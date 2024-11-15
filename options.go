@@ -15,7 +15,7 @@ func getFirecrackerConfig(vmmID string) (firecracker.Config, error) {
 	socket := getSocketPath(vmmID)
 	return firecracker.Config{
 		SocketPath:      socket,
-		KernelImagePath: "../../linux/vmlinux",
+		KernelImagePath: "../linux/vmlinux",
 		LogPath:         fmt.Sprintf("%s.log", socket),
 		Drives: []models.Drive{{
 			DriveID:      firecracker.String("1"),
@@ -45,7 +45,6 @@ func getFirecrackerConfig(vmmID string) (firecracker.Config, error) {
 		}},
 		MachineCfg: models.MachineConfiguration{
 			VcpuCount:  firecracker.Int64(1),
-			HtEnabled:  firecracker.Bool(true),
 			MemSizeMib: firecracker.Int64(256),
 		},
 	}, nil
