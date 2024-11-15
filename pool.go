@@ -16,7 +16,7 @@ func fillVMPool(ctx context.Context, WarmVMs chan<- runningFirecracker) {
 		default:
 			vm, err := createAndStartVM(ctx)
 			if err != nil {
-				log.Error("failed to create VMM")
+				log.WithError(err).Error("failed to create VMM")
 				time.Sleep(time.Second)
 				continue
 			}
